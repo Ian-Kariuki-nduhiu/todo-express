@@ -6,6 +6,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import Todo from "./models/Todo.js";
+import routerDB from "./routers/RouterDB.js";
 
 dotenv.config();
 
@@ -115,52 +116,8 @@ app.delete("/api/todos/:id", (req, res) => {
   console.log("----->Delete");
 });
 
+app.use("/", routerDB);
+
 app.listen(PORT, () => {
   console.log("Server running at port: 3000");
-});
-
-//endpoints , use mongodb for storage and fetching
-app.get("/app/todos", async (req, res) => {
-  try {
-    const todos = await Todo.find();
-    res.json(todos);
-  } catch (error) {
-    res.status(500).json({ error: `Error fetching todos: ${error}` });
-  }
-});
-
-app.post("/app/todos", async (req, res) => {
-  try {
-    const newTodo = new Todo({
-      text: req.body.text,
-    });
-    await newTodo.save();
-    res.status(201).json(newTodo);
-  } catch (error) {
-    res.status(500).json({ error: `Error adding todo: ${error}` });
-  }
-});
-
-app.put("/app/todos/:id", async (req, res) => {
-  try {
-    const todo = await Todo.findByIdAndUpdate(
-      req.params.id,
-      { completed: req.body.completed },
-      { returnDocument: "after" },
-    );
-    if (!todo) return res.status(404).json({ error: "Todo not found" });
-    res.json(todo);
-  } catch (error) {
-    res.status(500).json({ error: `Error updating todo ${error}` });
-  }
-});
-
-app.delete("/app/todos/:id", async (req, res) => {
-  try {
-    const todo = await Todo.findByIdAndDelete(req.params.id);
-    if (!todo) return res.status(404).json({ error: "Todo not found" });
-    res.json(todo);
-  } catch (error) {
-    res.status(500).json({ error: `Error deleting todo ${error}` });
-  }
 });

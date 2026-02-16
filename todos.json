@@ -5,8 +5,18 @@
     "id": 1770737180589
   },
   {
-    "completed": false,
+    "completed": true,
     "text": "Code app",
     "id": 1770737191078
+  },
+  {
+    "completed": false,
+    "text": "Push to github",
+    "id": 1770795418750
+  },
+  {
+    "completed": false,
+    "text": "Host app",
+    "id": 1770795429686
   }
 ]

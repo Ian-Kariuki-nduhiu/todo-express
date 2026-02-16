@@ -79,3 +79,59 @@ h1 {
     padding-top: 15px;
     border-top: 2px solid #e0e0e0;
 }
+
+.todo-item {
+    background: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s;
+}
+
+.todo-item:hover {
+    background: #e9ecef;
+    transform: translateX(5px); /* Slides right on hover */
+}
+
+/* When a todo is completed */
+.todo-item.completed {
+    opacity: 0.6;
+}
+
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: #999;
+}
+
+/* The checkbox */
+.checkbox {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+/* The todo text */
+.todo-text {
+    flex: 1;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Delete button */
+.delete-btn {
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.delete-btn:hover {
+    background: #ee5a6f;
+}
